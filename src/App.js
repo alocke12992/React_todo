@@ -1,11 +1,26 @@
 import React, { Component } from "react";
 import List from "./List";
 import TodoForm from "./TodoForm";
+import Footer from './Footer' 
 
 class App extends Component {
-  state = {
-    todos: []
-  };
+  state = { todos: [], filter: 'All'};
+
+  setFilter = (filter) => {
+    this.setState({ filter })
+  }
+
+  visibleItems = () => {
+    const { todos, filter } = this.state; 
+    switch(filter) {
+      case 'Active':
+        return todos.filter( t => !t.complete )
+      case 'Complete':
+        return todos.filter( t => t.complete)
+      default: 
+        return todos 
+    }
+  }
 
   handleClick = (id) => {
     const { todos } = this.state; 
@@ -42,13 +57,17 @@ class App extends Component {
   };
 
   render() {
-    const { todos } = this.state;
+    const { todos, filter } = this.state;
     return (
       <div>
         <TodoForm addItem={this.addTodo} />
         <List 
           todoClick={this.handleClick}
-          items={todos} 
+          items={this.visibleItems()} 
+        />
+        <Footer 
+          filter={filter}
+          setFilter={this.setFilter} 
         />
       </div>
     );
