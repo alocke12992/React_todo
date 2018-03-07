@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-
+import List from './List';
+import TodoForm from './TodoForm'; 
 
 class App extends Component {
   state = {
@@ -23,14 +23,10 @@ class App extends Component {
     const { todos } = this.state
     return (
       <div>
-        <ul>
-          { todos.sort(this.byName).map( (todo, i) => {
-            return <li key={todo.id}>{todo.name}</li>
-            })
-          }
-        </ul>
+        <TodoForm /> 
+        <List items={todos} /> 
       </div>
-    )
+    );
   }
 }
 
