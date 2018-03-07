@@ -11,7 +11,8 @@ const styles = {
 };
 
 const filterLink = (current, name, setFilter) => {
-  if (current === name) return <span>{name}</span>;
+  if (current === name) 
+    return <span key={name}>{name}</span>;
   else
     return (
       <span style={styles.link} onClick={() => setFilter(name)}>
@@ -22,7 +23,7 @@ const filterLink = (current, name, setFilter) => {
 
 const Footer = ({ filter, setFilter }) => (
   <div>
-    {["All", "Active", "Complete"].map(f => filterLink(filter, f, setFilter))}
+    {["All", "Active", "Complete"].map( f => filterLink(filter, f, setFilter))}
   </div>
 );
 

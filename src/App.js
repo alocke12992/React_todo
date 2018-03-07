@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 import List from "./List";
 import TodoForm from "./TodoForm";
-import Footer from './Footer' 
+import Footer from './Footer'; 
+import Clock from './Clock'; 
 
 class App extends Component {
-  state = { todos: [], filter: 'All'};
+  state = { todos: [], filter: 'All', showClock: false };
+
+
+  toggleShowClock = () => {
+    this.setState (state => {
+      return {
+        showClock: !state.showClock 
+      }
+    })
+  }
 
   setFilter = (filter) => {
     this.setState({ filter })
@@ -57,9 +67,11 @@ class App extends Component {
   };
 
   render() {
-    const { todos, filter } = this.state;
+    const { todos, filter, showClock } = this.state;
     return (
       <div>
+        { showClock && <clock /> }
+        <button onClick={this.toggleShowClock}>Toggle Clock</button>
         <TodoForm addItem={this.addTodo} />
         <List 
           todoClick={this.handleClick}
