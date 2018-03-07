@@ -70,7 +70,7 @@ class App extends Component {
     const { todos, filter, showClock } = this.state;
     return (
       <div>
-        { showClock && <clock /> }
+        { showClock && < Clock /> }
         <button onClick={this.toggleShowClock}>Toggle Clock</button>
         <TodoForm addItem={this.addTodo} />
         <List 
