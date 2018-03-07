@@ -1,7 +1,16 @@
-import React from "react";
+import React from 'react';
+import Todo from './Todo';
 
-const List = ({ items }) => (
-  <ul>{items.map(item => <li key={item.id}>{item.name}</li>)}</ul>
-);
+const List = ({ items, todoClick }) => (
+  <ul>
+    { items.map( item => 
+      <Todo 
+        key={item.id} 
+        todoClick={todoClick}
+        {...item} 
+      />
+    )}
+  </ul>
+)
 
 export default List;

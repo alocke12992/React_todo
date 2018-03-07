@@ -7,6 +7,21 @@ class App extends Component {
     todos: []
   };
 
+  handleClick = (id) => {
+    const { todos } = this.state; 
+    this.setState({
+      todos: todos.map( todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            complete: !todo.complete
+          }
+        }
+        return todo 
+      })
+    })
+  }
+
   byName = (x, y) => {
     if (x.name > y.name) return 1;
     if (x.name < y.name) return -1;
@@ -31,7 +46,10 @@ class App extends Component {
     return (
       <div>
         <TodoForm addItem={this.addTodo} />
-        <List items={todos} />
+        <List 
+          todoClick={this.handleClick}
+          items={todos} 
+        />
       </div>
     );
   }
